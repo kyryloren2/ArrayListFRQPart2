@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class WordScramble
 {
@@ -15,7 +16,20 @@ public class WordScramble
      */
     public static String scrambleWord(String word)
     {
-        /* to be implemented in part (a) */
+        ArrayList<String> wordList = new ArrayList<String>(Arrays.asList(word.split("")));
+        String finalString = "";
+
+        for(int i = 0; i < word.length(); i++) {
+            if(wordList.get(i).equals("A") && !wordList.get(i + 1).equals("A")) {
+                String removed = wordList.set(i, wordList.get(i + 1));
+                wordList.set(i + 1, removed);
+                finalString += wordList.get(i);
+                i++;
+            }
+        }
+
+        return finalString;
+
     }
 
     /** Modifies wordList by replacing each word with its scrambled
@@ -32,6 +46,10 @@ public class WordScramble
      */
     public static void scrambleOrRemove(ArrayList<String> wordList)
     {
-        /* to be implemented in part (b) */
+        for(int i = 0; i < wordList.size(); i++) {
+            if(scrambleWord(wordList.get(i)).equals(wordList.get(i))) {
+                wordList.remove(i);
+            }
+        }
     }
 }
