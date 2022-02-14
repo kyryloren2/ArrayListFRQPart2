@@ -16,20 +16,12 @@ public class WordScramble
      */
     public static String scrambleWord(String word)
     {
-        ArrayList<String> wordList = new ArrayList<String>(Arrays.asList(word.split("")));
-        String finalString = "";
+        int currentIndex = 0;
+        String result;
 
-        for(int i = 0; i < word.length(); i++) {
-            if(wordList.get(i).equals("A") && !wordList.get(i + 1).equals("A")) {
-                String removed = wordList.set(i, wordList.get(i + 1));
-                wordList.set(i + 1, removed);
-                finalString += wordList.get(i);
-                i++;
-            }
+        while(currentIndex < word.length() - 1) {
+            if(word.substring(currentIndex, currentIndex + 1).equals("A") )
         }
-
-        return finalString;
-
     }
 
     /** Modifies wordList by replacing each word with its scrambled
@@ -49,6 +41,7 @@ public class WordScramble
         for(int i = 0; i < wordList.size(); i++) {
             if(scrambleWord(wordList.get(i)).equals(wordList.get(i))) {
                 wordList.remove(i);
+                i--;
             }
         }
     }
